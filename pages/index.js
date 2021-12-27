@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Header from '../components/Header'
 
 export default function Home() {
   return (
@@ -7,8 +8,7 @@ export default function Home() {
         <title>Insta next</title>
         <link rel='icon' href='/insta-icon.ico' />
       </Head>
-      <h1>This is insta clone</h1>
-      {/* Header */}
+      <Header />
       {/* Feed */}
       {/* Modal */}
     </div>
