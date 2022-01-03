@@ -6,6 +6,7 @@ import {
   HeartIcon,
   PaperAirplaneIcon,
 } from '@heroicons/react/outline'
+import { HearIcon as HeartIconFilled } from '@heroicons/react/solid'
 
 function Post({ id, username, userImg, caption, img }) {
   return (
@@ -25,8 +26,20 @@ function Post({ id, username, userImg, caption, img }) {
       <img src={img} alt='' className='object-cover w-full' />
 
       {/* Btns */}
+      <div className='flex justify-between px-4 pt-4'>
+        <div className='flex space-x-4'>
+          <HeartIcon className='btn' />
+          <ChatIcon className='btn' />
+          <PaperAirplaneIcon className='btn' />
+        </div>
+        <BookmarkIcon className='btn' />
+      </div>
 
       {/* Caption */}
+      <p className='p-5 truncate'>
+        <span className='font-bold mr-1'>{username} </span>
+        {caption}
+      </p>
 
       {/* Comments */}
 
