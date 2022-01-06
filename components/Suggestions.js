@@ -27,7 +27,7 @@ function Suggestions() {
         >
           <img
             className='w-10 h-10 rounded-full border p-[2px]'
-            src='/profile-pic-2.jpg'
+            src={`https://i.pravatar.cc/100?img=${profile.id}`}
             alt='avatar pic'
           />
           <div className='flex-1 ml-4'>
