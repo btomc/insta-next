@@ -7,8 +7,11 @@ import {
   PaperAirplaneIcon,
 } from '@heroicons/react/outline'
 import { HearIcon as HeartIconFilled } from '@heroicons/react/solid'
+import { useSession } from 'next-auth/react'
 
 function Post({ id, username, userImg, caption, img }) {
+  const { data: session } = useSession()
+
   return (
     <div className='bg-white my-7 border rounded-sm'>
       {/* Header */}
@@ -26,6 +29,8 @@ function Post({ id, username, userImg, caption, img }) {
       <img src={img} alt='' className='object-cover w-full' />
 
       {/* Btns */}
+      {session && (
+
       <div className='flex justify-between px-4 pt-4'>
         <div className='flex space-x-4'>
           <HeartIcon className='btn' />
@@ -34,6 +39,7 @@ function Post({ id, username, userImg, caption, img }) {
         </div>
         <BookmarkIcon className='btn' />
       </div>
+      )}
 
       {/* Caption */}
       <p className='p-5 truncate'>
@@ -44,6 +50,8 @@ function Post({ id, username, userImg, caption, img }) {
       {/* Comments */}
 
       {/* Input box */}
+      {session && (
+
       <form className='flex items-center p-4'>
         <EmojiHappyIcon className='h-7' />
         <input
@@ -53,6 +61,7 @@ function Post({ id, username, userImg, caption, img }) {
         />
         <button className='font-semibold text-blue-400'>Post</button>
       </form>
+      )}
     </div>
   )
 }
