@@ -1,16 +1,24 @@
+import { useState, useEffect } from 'react'
 import Post from './Post'
-
-const posts = [
-  {
-    id: '123',
-    username: 'lucymiller',
-    userImg: '/person-1.jpg',
-    img: '/img-1.jpg',
-    caption: 'Summer Time',
-  },
-]
+import { onSnapshot, collection, query, orderBy } from '@firebase/firestore'
+import { db } from '../firebase'
 
 function Posts() {
+  const [posts, setPosts] = useState([])
+
+  useEffect(() => {
+    const unsubscribe = onSnapshot(
+      query(collection(db, 'posts'), orderBy('timestamp', 'desc')),
+      (snapshot) => {
+        setPosts(snapshot.docs)
+      }
+    )
+
+    return unsubscribe
+  }, [db])
+
+  console.log(posts)
+
   return (
     <div>
       {posts.map((post) => (
@@ -18,18 +26,10 @@ function Posts() {
           <Post
             key={post.id}
             id={post.id}
-            username={post.username}
-            userImg={post.userImg}
-            img={post.img}
-            caption={post.caption}
-          />
-          <Post
-            key={post.id}
-            id={post.id}
-            username={post.username}
-            userImg={post.userImg}
-            img={post.img}
-            caption={post.caption}
+            username={post.data().username}
+            userImg={post.data().profileImg}
+            img={post.data().image}
+            caption={post.data().caption}
           />
         </>
       ))}
